@@ -3,12 +3,7 @@ import { FormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
 import { NgModule } from "@angular/core";
 
-/*----------------------------------------------------------|
- | ~~~ Blue Path ~~~                                        |
- |----------------------------------------------------------|
- | Importa FromNowPipe para poder usarlo en este documento. |
- |----------------------------------------------------------*/
-
+// Import own elements
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app.routing";
 import { AutoGrowDirective } from "./directives/auto-grow.directive";
@@ -26,6 +21,7 @@ import { PostPreviewComponent } from "./components/post-preview/post-preview.com
 import { PostsListComponent } from "./components/posts-list/posts-list.component";
 import { PostsResolve } from "./services/posts-resolve.service";
 import { PostService } from "./services/post.service";
+import { FromNowPipe } from "./pipes/from-now.pipe";
 import { SearchBoxComponent } from "./components/search-box/search-box.component";
 import { UserPostsComponent } from "./components/user-posts/user-posts.component";
 
@@ -36,12 +32,6 @@ import { UserPostsComponent } from "./components/user-posts/user-posts.component
         FormsModule,
         HttpModule
     ],
-
-    /*-----------------------------------------------|
-     | ~~~ Blue Path ~~~                             |
-     |-----------------------------------------------|
-     | No olvides declarar FromNowPipe en el módulo. |
-     |-----------------------------------------------*/
 
     declarations: [
         AppComponent,
@@ -56,7 +46,8 @@ import { UserPostsComponent } from "./components/user-posts/user-posts.component
         PostFormComponent,
         PostsListComponent,
         SearchBoxComponent,
-        UserPostsComponent
+        UserPostsComponent,
+        FromNowPipe
     ],
     providers: [
         BackendUriProvider,
