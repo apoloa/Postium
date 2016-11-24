@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute} from "@angular/router";
+import { Router, ActivatedRoute} from "@angular/router";
 
 import { Post } from "../../models/post";
 
@@ -11,11 +11,15 @@ export class PostDetailsComponent implements OnInit {
 
     post: Post;
 
-    constructor(private _activatedRoute: ActivatedRoute) { }
+    constructor(private _activatedRoute: ActivatedRoute, private _router: Router) { }
 
     ngOnInit(): void {
         this._activatedRoute.data.forEach((data: { post: Post}) => this.post = data.post);
         window.scrollTo(0, 0);
+    }
+
+    goBack(): void{
+        this._router.navigate(['/posts']);
     }
 
     plainTextToHtml(text: string): string {

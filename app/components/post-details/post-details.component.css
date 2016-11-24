@@ -13,6 +13,7 @@
 }
 
 .metadata .avatar,
+.metadata .back,
 .metadata .author {
     display: inline-block;
 }
@@ -20,6 +21,15 @@
 .metadata .avatar img {
     border-radius: 50%;
     max-width: 40px;
+}
+
+.metadata .back {
+    margin-right: 10px;
+}
+
+.metadata .back i{
+    font-size: 1.5em;
+    margin-top: -6px;
 }
 
 .metadata .author {
