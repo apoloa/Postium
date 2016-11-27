@@ -27,6 +27,7 @@ import {PostService} from "./services/post.service";
 import {FromNowPipe} from "./pipes/from-now.pipe";
 import {SearchBoxComponent} from "./components/search-box/search-box.component";
 import {UserPostsComponent} from "./components/user-posts/user-posts.component";
+import {LikesComponent} from "./components/likes-box/likes-box.component";
 
 @NgModule({
     imports: [
@@ -51,6 +52,7 @@ import {UserPostsComponent} from "./components/user-posts/user-posts.component";
         PostsListComponent,
         SearchBoxComponent,
         UserPostsComponent,
+        LikesComponent,
         FromNowPipe
     ],
     providers: [
@@ -59,6 +61,8 @@ import {UserPostsComponent} from "./components/user-posts/user-posts.component";
         PostDetailsResolve,
         PostService,
         PostsResolve,
+        LocalStorageService,
+        LikesService
     ],
     bootstrap: [
         AppComponent

@@ -5,21 +5,23 @@ import {LocalStorageService} from "./local-storage.service";
 @Injectable()
 export class LikesService {
 
-    localStorage: LocalStorageService;
     likesId: string = 'likes';
 
-    constructor() {
-        this.localStorage = new LocalStorageService();
+    constructor( private _localStorage: LocalStorageService) {
     }
 
     saveLikeId(id: number): void {
-        let ids = this.localStorage.getInLocalStorage(this.likesId);
-        ids = `${ids},${id}`;
-        this.localStorage.setInLocalStorage(this.likesId, ids);
+        let ids = this._localStorage.getInLocalStorage(this.likesId);
+        if(ids == ""){
+            ids = `${id}`;
+        }else{
+            ids = `${ids},${id}`;
+        }
+        this._localStorage.setInLocalStorage(this.likesId, ids);
     }
 
     checkLikeId(id: number): boolean {
-        let ids = this.localStorage.getInLocalStorage(this.likesId);
+        let ids = this._localStorage.getInLocalStorage(this.likesId);
         if (ids) {
             const arrIds = ids.split(',');
             const filtered = arrIds.filter((element:string) => {

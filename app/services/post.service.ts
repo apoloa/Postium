@@ -56,7 +56,7 @@ export class PostService {
 
     updatePost(post: Post): Observable<Post>{
         return this._http
-            .put(`${this._backendUri}/posts`, post)
+            .post(`${this._backendUri}/posts`, post)
             .map((response: Response) => {
                 let json = response.json();
                 return Post.fromJson(json);

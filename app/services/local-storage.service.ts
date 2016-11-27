@@ -10,6 +10,7 @@ export class LocalStorageService {
     };
 
     setInLocalStorage(identifier, information): boolean {
+        debugger;
         if (this.works) {
             localStorage.setItem(identifier, information);
             return true;
@@ -20,7 +21,7 @@ export class LocalStorageService {
 
     getInLocalStorage(identifier): string {
         if (this.works) {
-            return localStorage.getItem(identifier);
+            return localStorage.getItem(identifier) || "";
         } else {
             return null;
         }

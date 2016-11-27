@@ -15,7 +15,7 @@
         <button (click)="updatePost();" [hidden]="post.author.id!=defaultUser.id">Modify</button>
     </div>
     <div class="like">
-        <button (click)="likePost();"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i>{{post.likes}}</button>
+        <likes-box [post]="post"></likes-box>
     </div>
 </div>
 <div class="post">
