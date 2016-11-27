@@ -25,6 +25,8 @@
 
 .metadata .back {
     margin-right: 10px;
+    position: relative;
+    bottom: 9px;
 }
 
 .metadata .back i{
