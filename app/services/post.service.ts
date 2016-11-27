@@ -36,7 +36,7 @@ export class PostService {
             .map((response: Response) => Post.fromJsonToList(response.json()))
             .map((posts: Post[]) => posts
                 .filter((post: Post) => post.categories
-                .find((category: Category) => category.id == id)));
+                    .find((category: Category) => category.id == id)));
     }
 
     getPostDetails(id: number): Observable<Post> {
@@ -56,7 +56,11 @@ export class PostService {
          | datos actualizados obtenidos tras la inserción; puedes usar la función estática  |
          | 'fromJson() para crar un nuevo objeto Post basado en la respuesta HTTP obtenida. |
          |----------------------------------------------------------------------------------*/
-
-        return null;
+        return this._http
+            .post(`${this._backendUri}/posts`, post)
+            .map((response: Response) => {
+                let json = response.json();
+                return Post.fromJson(json)
+            });
     }
 }
