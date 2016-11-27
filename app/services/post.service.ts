@@ -54,12 +54,22 @@ export class PostService {
             });
     }
 
-    updatePost(post: Post): Observable<Post>{
+    updatePost(post: Post): Observable<Post> {
         return this._http
             .post(`${this._backendUri}/posts`, post)
             .map((response: Response) => {
                 let json = response.json();
                 return Post.fromJson(json);
             })
+    }
+
+    getPostSearch(text: string): Observable<Post[]> {
+        const url = `${this._backendUri}/posts?q=${text}`;
+        return this._http
+            .get(url)
+            .map((response: Response) => {
+                return Post.fromJsonToList(response.json()
+                )
+            });
     }
 }

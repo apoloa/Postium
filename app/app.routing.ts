@@ -51,6 +51,13 @@ const routes: Routes = [
         }
     },
     {
+        path: "search/:text",
+        component: NewsComponent,
+        resolve: {
+            posts: PostsResolve
+        }
+    },
+    {
         path: "**",
         redirectTo: "/posts"
     }

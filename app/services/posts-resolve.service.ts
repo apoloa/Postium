@@ -22,6 +22,12 @@ export class PostsResolve implements Resolve<Post[]> {
             return this._postService.getCategoryPosts(categoryId);
         }
 
+        const text = route.params['text'];
+        if(text){
+            return this._postService.getPostSearch(text);
+        }
+
+
         return this._postService.getPosts();
     }
 }
