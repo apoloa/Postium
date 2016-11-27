@@ -15,7 +15,8 @@
 .metadata .avatar,
 .metadata .back,
 .metadata .author,
-.metadata .modify{
+.metadata .modify,
+.metadata .like{
     display: inline-block;
 }
 
