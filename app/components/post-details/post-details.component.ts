@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute} from "@angular/router";
+import {Component, OnInit} from "@angular/core";
+import {Router, ActivatedRoute} from "@angular/router";
 
-import { Post } from "../../models/post";
+import {Post} from "../../models/post";
 
 @Component({
     templateUrl: "./app/components/post-details/post-details.component.html",
@@ -11,14 +11,15 @@ export class PostDetailsComponent implements OnInit {
 
     post: Post;
 
-    constructor(private _activatedRoute: ActivatedRoute, private _router: Router) { }
+    constructor(private _activatedRoute: ActivatedRoute, private _router: Router) {
+    }
 
     ngOnInit(): void {
         this._activatedRoute.data.forEach((data: { post: Post}) => this.post = data.post);
         window.scrollTo(0, 0);
     }
 
-    goBack(): void{
+    goBack(): void {
         this._router.navigate(['/posts']);
     }
 
@@ -26,13 +27,9 @@ export class PostDetailsComponent implements OnInit {
         return `<p>${text.replace(/\n/gi, "</p><p>")}</p>`;
     }
 
-    /*---------------------------------------------------------------------------------------------------------------|
-     | ~~~ Red Path ~~~                                                                                              |
-     |---------------------------------------------------------------------------------------------------------------|
-     | Añade un manejador que navegue a la dirección correspondiente a los posts del autor indicado. Recuerda que    |
-     | para hacer esto necesitas inyectar como dependencia el Router de la app. La ruta a navegar es '/posts/users', |
-     | pasando como parámetro el identificador del autor.                                                            |
-     |---------------------------------------------------------------------------------------------------------------*/
+    showAuthorPost(): void {
+        this._router.navigate(['/posts/users', this.post.author.id]);
+    }
 
     /*--------------------------------------------------------------------------------------------------------------------|
      | ~~~ Yellow Path ~~~                                                                                                |

@@ -11,17 +11,15 @@ export class PostPreviewComponent {
 
     @Input() post: Post;
     @Output() showDetailPost: EventEmitter<number> = new EventEmitter();
-    
-    /*------------------------------------------------------------------------------------------------------------------|
-     | ~~~ Red Path ~~~                                                                                                 |
-     |------------------------------------------------------------------------------------------------------------------|
-     | Expón un atributo de salida con el decorador correspondiente. El tipo de dicho atributo debe permitir la emisión |
-     | de eventos; la idea es enviar al componente padre el usuario sobre el cuál se ha hecho clic. Y puesto que dicho  |
-     | clic se realiza en el template de este componente, necesitas, además, un manejador para el mismo.                |
-     |------------------------------------------------------------------------------------------------------------------*/
+    @Output() showUserPost: EventEmitter<number> = new EventEmitter();
 
     showDetail(): void {
         this.showDetailPost.emit(this.post.id);
+    }
+
+    showAuthorPost(): void {
+        console.log('Called');
+        this.showUserPost.emit(this.post.author.id);
     }
 
     plainTextToHtml(text: string): string {
