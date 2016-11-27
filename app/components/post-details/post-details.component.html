@@ -1,8 +1,8 @@
 <div class="metadata">
     <div class="back">
         <i class="fa fa-chevron-left"
-                 aria-hidden="true"
-        (click)="goBack()"></i>
+           aria-hidden="true"
+           (click)="goBack()"></i>
     </div>
     <div class="avatar">
         <img [src]="post.author.avatar">
@@ -10,6 +10,9 @@
     <div class="author">
         <span class="name blink-font" (click)="showAuthorPost();">{{ post.author.name }}</span>
         <span class="date">{{ post.publicationDate | FromNow }}</span>
+    </div>
+    <div class="modify">
+        <button (click)="updatePost();" [hidden]="post.author.id!=defaultUser.id">Modify</button>
     </div>
 </div>
 <div class="post">

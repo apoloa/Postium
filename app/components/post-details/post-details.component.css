@@ -14,8 +14,14 @@
 
 .metadata .avatar,
 .metadata .back,
-.metadata .author {
+.metadata .author,
+.metadata .modify{
     display: inline-block;
+}
+
+.metadata .modify{
+    position: relative;
+    bottom:9px;
 }
 
 .metadata .avatar img {

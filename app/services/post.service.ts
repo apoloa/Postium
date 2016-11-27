@@ -46,21 +46,20 @@ export class PostService {
     }
 
     createPost(post: Post): Observable<Post> {
-
-        /*----------------------------------------------------------------------------------|
-         | ~~~ Purple Path ~~~                                                              |
-         |----------------------------------------------------------------------------------|
-         | Utiliza el cliente HTTP para guardar en servidor el post indicado. La ruta sobre |
-         | la cual tienes que hacer la petición POST es '/posts'. Recuerda que siempre que  |
-         | se crea una entidad en servidor es una buena práctica retornar la misma con los  |
-         | datos actualizados obtenidos tras la inserción; puedes usar la función estática  |
-         | 'fromJson() para crar un nuevo objeto Post basado en la respuesta HTTP obtenida. |
-         |----------------------------------------------------------------------------------*/
         return this._http
             .post(`${this._backendUri}/posts`, post)
             .map((response: Response) => {
                 let json = response.json();
-                return Post.fromJson(json)
+                return Post.fromJson(json);
             });
+    }
+
+    updatePost(post: Post): Observable<Post>{
+        return this._http
+            .put(`${this._backendUri}/posts`, post)
+            .map((response: Response) => {
+                let json = response.json();
+                return Post.fromJson(json);
+            })
     }
 }

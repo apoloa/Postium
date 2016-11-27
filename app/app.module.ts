@@ -14,6 +14,7 @@ import { CategoryService } from "./services/category.service";
 import { HeaderBarComponent } from "./components/header-bar/header-bar.component";
 import { NewsComponent } from "./components/news/news.component";
 import { NewStoryComponent } from "./components/new-story/new-story.component";
+import { UpdateStoryComponent } from "./components/update-story/update-story.component";
 import { PostDetailsComponent } from "./components/post-details/post-details.component";
 import { PostDetailsResolve } from "./services/post-details-resolve.service";
 import { PostFormComponent } from "./components/post-form/post-form.component";
@@ -41,6 +42,7 @@ import { UserPostsComponent } from "./components/user-posts/user-posts.component
         HeaderBarComponent,
         NewsComponent,
         NewStoryComponent,
+        UpdateStoryComponent,
         PostDetailsComponent,
         PostPreviewComponent,
         PostFormComponent,

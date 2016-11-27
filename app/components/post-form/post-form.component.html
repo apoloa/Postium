@@ -1,60 +1,27 @@
-<!--
-|---------------------------------------------------------------------------------------------|
-| Purple Path                                                                                 |
-|---------------------------------------------------------------------------------------------|
-| Crea una 'template reference variable' del formulario: quizá la necesites. Además, suscribe |
-| el formulario al evento correspondiente para hacer 'submit' del mismo: no olvides pasar la  |
-| referencia del formulario en él.                                                            |
-|---------------------------------------------------------------------------------------------|
--->
 <form #postForm="ngForm" (ngSubmit)="submitPost(postForm)" novalidate>
-    <!--
-    |-------------------------------------------------------------------------------------------------|
-    | Purple Path                                                                                     |
-    |-------------------------------------------------------------------------------------------------|
-    | El campo 'title' debe enlazarse al formulario a través de la directiva 'ngModel'. Recuerda usar |
-    | el nombre que se ha definido en la entidad Post. Además, este campo debe ser obligatorio.       |
-    |-------------------------------------------------------------------------------------------------|
-    -->
     <input
         type="text"
         placeholder="Título"
         class="u-full-width"
-        ngModel
+        [(ngModel)]="title"
         name="title"
         required
     >
-    <!--
-    |-------------------------------------------------------------------------------------------------|
-    | Purple Path                                                                                     |
-    |-------------------------------------------------------------------------------------------------|
-    | El campo 'intro' debe enlazarse al formulario a través de la directiva 'ngModel'. Recuerda usar |
-    | el nombre que se ha definido en la entidad Post. Además, este campo debe ser obligatorio.       |
-    |-------------------------------------------------------------------------------------------------|
-    -->
     <textarea
         placeholder="Introduce tu historia"
         class="u-full-width georgia-font"
-        ngModel
+        [(ngModel)]="intro"
         name="intro"
         required
         autogrow></textarea>
-    <!--
-    |-------------------------------------------------------------------------------------------------|
-    | Purple Path                                                                                     |
-    |-------------------------------------------------------------------------------------------------|
-    | El campo 'body' debe enlazarse al formulario a través de la directiva 'ngModel'. Recuerda usar  |
-    | el nombre que se ha definido en la entidad Post. Además, este campo debe ser obligatorio.       |
-    |-------------------------------------------------------------------------------------------------|
-    -->
     <textarea
         placeholder="Cuenta tu historia"
         class="u-full-width georgia-font"
-        ngModel
+        [(ngModel)]="body"
         name="body"
         required
         autogrow></textarea>
-    <div>
+    <div [hidden]="post">
         <div>
             <label (click)="setScheduling(false)">
                 <span class="radio-input" [class.active]="!publicationDateScheduled"></span>
@@ -75,14 +42,6 @@
                 [ngModel]="nowDatetimeLocal">
         </div>
     </div>
-    <!--
-    |--------------------------------------------------------------------------|
-    | Purple Path                                                              |
-    |--------------------------------------------------------------------------|
-    | Deshabilita el botón 'Publicar' en caso de que el formulario no sea      |
-    | válido. Para ello vas a necesitar acceder al 'FormGroup' del formulario. |
-    |--------------------------------------------------------------------------|
-    -->
     <button type="submit" [disabled]="postForm.invalid"
             class="button-primary u-pull-right">Publicar</button>
 </form>

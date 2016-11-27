@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {Router, ActivatedRoute} from "@angular/router";
 
 import {Post} from "../../models/post";
+import {User} from "../../models/user";
 
 @Component({
     templateUrl: "./app/components/post-details/post-details.component.html",
@@ -10,6 +11,7 @@ import {Post} from "../../models/post";
 export class PostDetailsComponent implements OnInit {
 
     post: Post;
+    defaultUser: User = User.defaultUser();
 
     constructor(private _activatedRoute: ActivatedRoute, private _router: Router) {
     }
@@ -21,6 +23,10 @@ export class PostDetailsComponent implements OnInit {
 
     goBack(): void {
         this._router.navigate(['/posts']);
+    }
+
+    updatePost(): void{
+        this._router.navigate(['/post/update', this.post.id]);
     }
 
     plainTextToHtml(text: string): string {

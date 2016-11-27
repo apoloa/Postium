@@ -1,8 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import {Component, EventEmitter, OnInit, Output, Input} from "@angular/core";
+import {FormGroup} from "@angular/forms";
 
-import { Post } from "../../models/post";
-import { User } from "../../models/user";
+import {Post} from "../../models/post";
+import {User} from "../../models/user";
 
 @Component({
     selector: "post-form",
@@ -12,11 +12,19 @@ import { User } from "../../models/user";
 export class PostFormComponent implements OnInit {
 
     nowDatetimeLocal: string;
+    body: String;
+    title: String;
+    intro: String;
     publicationDateScheduled: boolean = false;
-
+    @Input() post: Post;
     @Output() postSubmitted: EventEmitter<Post> = new EventEmitter();
 
     ngOnInit(): void {
+        if (this.post) {
+            this.title = this.post.title;
+            this.body = this.post.body;
+            this.intro = this.post.intro;
+        }
         this.nowDatetimeLocal = this._formatDateToDatetimeLocal(new Date());
     }
 
@@ -52,22 +60,24 @@ export class PostFormComponent implements OnInit {
     }
 
     submitPost(form: FormGroup): void {
+        debugger;
+        if (this.post) {
+            if (User.defaultUser().id == this.post.author.id) {
+                let post: Post = Post.fromJson(form.value);
+                this.post.title = post.title;
+                this.post.intro = post.intro;
+                this.post.body = post.body;
+                this.postSubmitted.emit(this.post);
+            }
+        } else {
+            let post: Post = Post.fromJson(form.value);
+            post.likes = 0;
+            post.author = User.defaultUser();
+            post.publicationDate = this._getPostPublicationDate(form.value.publicationDate);
+            post.categories = [];
+            post.media = null;
+            this.postSubmitted.emit(post);
+        }
 
-        /*-------------------------------------------------------------------------------------------------------------|
-         | ~~~ Purple Path ~~~                                                                                         |
-         |-------------------------------------------------------------------------------------------------------------|
-         | Aquí no tienes que hacer nada más allá de comprobar que los datos del formulario se recogen correctamente y |
-         | tienen 'forma' de Post. Si no es así, al hacer 'Post.fromJson()' se instanciará un post que no se parece en |
-         | nada a lo indicado en el formulario. Por tanto, pon especial atención a que los nombres indicados en los    |
-         | distintos elementos del formulario se correspondan con las propiedades de la clase Post.                    |
-         |-------------------------------------------------------------------------------------------------------------*/
-
-        let post: Post = Post.fromJson(form.value);
-        post.likes = 0;
-        post.author = User.defaultUser();
-        post.publicationDate = this._getPostPublicationDate(form.value.publicationDate);
-        post.categories = [];
-        post.media = null;
-        this.postSubmitted.emit(post);
     }
 }
